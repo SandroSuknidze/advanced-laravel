@@ -10,6 +10,12 @@ class ScheduledClass extends Model
 {
     use HasFactory;
 
+    protected $guarded = null;
+
+    protected $casts = [
+        'date_time' => 'datetime',
+    ];
+
     public function instructor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'instructor_id');
