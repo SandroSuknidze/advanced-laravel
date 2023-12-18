@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ClassCanceled;
+use App\Jobs\NotifyClassCanceledJob;
 use App\Mail\ClassCanceledMail;
 use App\Notifications\ClassCanceledNofitication;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,6 +38,7 @@ class NotifyClassCanceled
 //            Mail::to($user)->send(new ClassCanceledMail($details));
 //        });
 
-        Notification::send($members, new ClassCanceledNofitication($details));
+        NotifyClassCanceledJob::dispatch($members, $details);
+
     }
 }
